@@ -16,5 +16,6 @@ public interface EmployeeMapper {
     Employee mapToModel(EmployeeCommand employeeCommand);
     void mapToModel(EmployeeCommand employeeCommand, @MappingTarget Employee employee);
     List<EmployeeJson> mapEmployeeListToJson(List<Employee> employees);
+    EmployeeJson mapToJson(Employee employee);
 
 }
