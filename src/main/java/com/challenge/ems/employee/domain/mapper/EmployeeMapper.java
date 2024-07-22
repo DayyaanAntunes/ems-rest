@@ -4,7 +4,6 @@ import com.challenge.ems.employee.domain.commands.EmployeeCommand;
 import com.challenge.ems.employee.domain.model.Employee;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
-import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring")
 public interface EmployeeMapper {
