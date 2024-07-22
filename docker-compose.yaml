@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:14.2-alpine
+    container_name: ems_postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: ems_staging_db
+    volumes:
+      - D:\Projectos\ONIT\data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
