@@ -11,8 +11,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface EmployeeMapper {
 
-    EmployeeMapper INSTANCE = Mappers.getMapper( EmployeeMapper.class );
-
+    //EmployeeMapper INSTANCE = Mappers.getMapper( EmployeeMapper.class );
     Employee mapToModel(EmployeeCommand employeeCommand);
     void mapToModel(EmployeeCommand employeeCommand, @MappingTarget Employee employee);
     List<EmployeeJson> mapEmployeeListToJson(List<Employee> employees);

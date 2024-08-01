@@ -17,6 +17,9 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    @Autowired
+    private EmployeeMapper employeeMapper;
+
     @Override
     public List<Employee> findAll() {
         try{
@@ -42,7 +45,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public Employee save(EmployeeCommand employeeCommand) {
         try {
-            Employee employee = EmployeeMapper.INSTANCE.mapToModel(employeeCommand);
+            Employee employee = employeeMapper.mapToModel(employeeCommand);
             return employeeRepository.save(employee);
         } catch (ConstraintViolationException e) {
                 throw new ResponseStatusException(HttpStatus.CONFLICT, "employee.email-already-exists");
@@ -55,7 +58,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     public Employee update(Long id, EmployeeCommand employeeCommand) {
         try {
             Employee employee = findEmployeeById(id);
-            EmployeeMapper.INSTANCE.mapToModel(employeeCommand, employee);
+            employeeMapper.mapToModel(employeeCommand, employee);
             return employeeRepository.save(employee);
         } catch (ConstraintViolationException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "employee.email-already-exists");
