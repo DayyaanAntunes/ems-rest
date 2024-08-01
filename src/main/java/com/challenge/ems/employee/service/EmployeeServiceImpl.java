@@ -6,7 +6,6 @@ import com.challenge.ems.employee.domain.model.Employee;
 import com.challenge.ems.employee.persistence.EmployeeRepository;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -24,7 +23,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     public List<Employee> findAll() {
         try{
             return employeeRepository.findAll();
-        }catch (DataAccessException e){
+        }catch (Exception e){
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "internal");
         }
     }
@@ -68,10 +67,6 @@ public class EmployeeServiceImpl implements EmployeeService{
             } else {
                 throw new ResponseStatusException(HttpStatus.NOT_FOUND, "employee.not-found");
             }
-        } catch (NullPointerException e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "employee.not-found");
-        } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "employee.invalid-argument");
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "internal");
         }
