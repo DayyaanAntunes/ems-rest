@@ -36,21 +36,20 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public Employee save(EmployeeCommand employeeCommand) {
-        try {
             Employee employee = employeeMapper.mapToModel(employeeCommand);
-            return employeeRepository.save(employee);
-        } catch (ConstraintViolationException e) {
-                throw new ResponseStatusException(HttpStatus.CONFLICT, "employee.email-already-exists");
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "internal");
-        }
+            return saveOrUpdateEmployee(employee);
     }
 
     @Override
     public Employee update(Long id, EmployeeCommand employeeCommand) {
-        try {
             Employee employee = findEmployeeById(id);
             employeeMapper.mapToModel(employeeCommand, employee);
+            return saveOrUpdateEmployee(employee);
+
+    }
+
+    private Employee saveOrUpdateEmployee(Employee employee){
+        try {
             return employeeRepository.save(employee);
         } catch (ConstraintViolationException e) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "employee.email-already-exists");
