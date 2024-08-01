@@ -36,9 +36,11 @@ public class EmployeeCommand {
     @NotNull(message = "{employee.missing-args}")
     private ModalityType modalityType;
 
+    @Pattern(regexp = "^\\d{13}$", message = "{employee.invalid-id-number}")
     @NotBlank(message = "{employee.missing-args}")
     private String idNumber;
 
+    @Pattern(regexp = "^\\d{9}$", message = "{employee.invalid-nuit}")
     @NotBlank(message = "{employee.missing-args}")
     private String nuit;
 
@@ -54,8 +56,10 @@ public class EmployeeCommand {
     private String email;
 
     @NotBlank(message = "{employee.missing-args}")
+    @Pattern(regexp = "^\\d{9}$", message = "{employee.invalid-phone-number}")
     private String phoneNumber;
 
+    @Pattern(regexp = "^\\d{9}$", message = "{employee.invalid-social-security-number}")
     @NotBlank(message = "{employee.missing-args}")
     private String socialSecurityNumber;
 
