@@ -16,8 +16,8 @@ CREATE TABLE employees
     email VARCHAR(32) NOT NULL,
     phone_number VARCHAR(9) NOT NULL,
     started_at DATE NOT NULL,
-    terminated_at DATE NOT NULL ,
-    contract_years SMALLINT NOT NULL ,
+    terminated_at DATE ,
+    contract_years SMALLINT,
     social_security_number VARCHAR(9) NOT NULL,
 
     CONSTRAINT pk_employees PRIMARY KEY (id)
