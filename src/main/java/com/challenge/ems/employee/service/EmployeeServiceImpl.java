@@ -31,15 +31,8 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public Employee findEmployeeById(Long id) {
-        try {
-            return employeeRepository.findById(id).get();
-        } catch (NullPointerException e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "employee.not-found");
-        } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "employee.invalid-argument");
-        } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "internal");
-        }
+            return employeeRepository.findById(id).orElseThrow(
+                    ()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "employee.not-found"));
     }
 
     @Override
