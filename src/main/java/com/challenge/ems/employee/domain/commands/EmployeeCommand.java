@@ -3,7 +3,6 @@ package com.challenge.ems.employee.domain.commands;
 import com.challenge.ems.employee.domain.enums.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -66,6 +65,6 @@ public class EmployeeCommand {
     @NotNull(message = "{employee.missing-args}")
     private LocalDate startedAt;
 
-    @Positive(message = "Employee contract years must be positive")
+    @Positive(message = "{employee.invalid-contract-years}")
     private Byte contractYears;
 }
