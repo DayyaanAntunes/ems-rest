@@ -4,6 +4,7 @@ import com.challenge.ems.employee.domain.commands.EmployeeCommand;
 import com.challenge.ems.employee.domain.mapper.EmployeeMapper;
 import com.challenge.ems.employee.presentation.json.EmployeeJson;
 import com.challenge.ems.employee.service.EmployeeServiceImpl;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,12 +32,12 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<EmployeeJson> createEmployee(@RequestBody EmployeeCommand employeeCommand) {
+    public ResponseEntity<EmployeeJson> createEmployee(@Valid @RequestBody EmployeeCommand employeeCommand) {
         return ResponseEntity.status(HttpStatus.CREATED).body(employeeMapper.mapToJson(employeeService.save(employeeCommand)));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<EmployeeJson> updateEmployee(@PathVariable Long id, @RequestBody EmployeeCommand employeeCommand) {
+    public ResponseEntity<EmployeeJson> updateEmployee(@PathVariable Long id, @Valid @RequestBody EmployeeCommand employeeCommand) {
         return ResponseEntity.status(HttpStatus.OK).body(employeeMapper.mapToJson(employeeService.update(id, employeeCommand)));
     }
 
